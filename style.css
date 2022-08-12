@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #ff216d, #2196f3);
+    flex-direction: column; 
+    gap: 1em;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 4rem;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.navigation {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuToggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 70px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.menuToggle::before {
+    content: '+';
+    position: absolute;
+    font-size: 2.8em;
+    font-weight: 550;
+    color: #087fe0;
+    transition: 1.5s;
+}
+
+.menuToggle.active::before {
+    transform: rotate(315deg);
+}
+
+.menu {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 70px;
+    z-index: -1;
+    transition: transform 0.5s, width 0.5s, height 0.5s;
+    transition-delay: 1s, 0.5s, 0.5s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.menuToggle.active~.menu {
+    width: 270px;
+    height: 70px;
+    z-index: 1;
+    transform: translateY(-80px);
+    transition-delay: 0s, 0.5s, 0.5s;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+.menu::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    left: calc(50% - 8px);
+    bottom: 4px;
+    transform: rotate(45deg);
+    border-radius: 2px;
+    transition: 0.5s;
+}
+
+.menuToggle.active~.menu::before {
+    transition-delay: 0.5s;
+    bottom: -6px;
+}
+
+.menu ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    gap: 30px;
+}
+
+.menu ul li {
+    list-style: none;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-30px);
+    transition: 0.25s;
+    transition-delay: calc(0s + var(--i));
+}
+
+.menuToggle.active~.menu ul li {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+    transition-delay: calc(0.75s + var(--i));
+}
+
+.menu ul li a {
+    display: block;
+    font-size: 2.2em;
+}
